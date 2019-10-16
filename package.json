@@ -11,7 +11,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test ",
-    "cypress:run": "cypress run --record --key=${CYPRESS_RECORD_KEY}",
+    "cypress:run": "cypress run --record --key=${CYPRESS_RECORD_KEY} --spec \"cypress/integration/active/**/*\"",
     "ci:cypress-run": "start-server-and-test start http://localhost:3000 cypress:run",
     "eject": "react-scripts eject"
   },
