@@ -34,5 +34,12 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
 
       # run tests!
-      - run: npm test
-      - run: npm run test:integrations
+  test:
+    orbs:
+      cypress: cypress-io/cypress@1
+    workflows:
+      build:
+        jobs:
+          - cypress/run:
+            start: npm start
+            wait-on: 'http://localhost:3000'
