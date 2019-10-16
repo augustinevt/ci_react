@@ -3,6 +3,8 @@
 # Check https://circleci.com/docs/2.0/language-javascript/ for more details
 #
 version: 2
+orbs:
+  cypress: cypress-io/cypress@1
 jobs:
   build:
     docker:
@@ -34,12 +36,7 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
 
       # run tests!
-  test:
-    orbs:
-      cypress: cypress-io/cypress@1
-    workflows:
-      build:
-        jobs:
-          - cypress/run:
-            start: npm start
-            wait-on: 'http://localhost:3000'
+      - run: npm test
+      - cypress/run:
+        start: npm start
+        wait-on: 'http://localhost:3000'
